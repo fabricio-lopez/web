@@ -1,205 +1,1005 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Grayscale - Start Bootstrap Theme</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
+<html lang="es" class="scroll-smooth">
+<head>
+  <!-- Configuración de codificación y diseño responsivo para todos los dispositivos -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cafetini La Ceiba | Proyecto III Parcial - Informática Aplicada UTH</title>
+
+  <!-- Carga de Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fuente tipográfica Inter de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    // Configuración personalizada de Tailwind para la identidad de Cafetini La Ceiba
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            cafe: {
+              50: '#fdf8f6',
+              100: '#f2e8e5',
+              200: '#eaddd7',
+              300: '#e0cec7',
+              400: '#d2bab0',
+              500: '#bfa094',
+              600: '#a18072',
+              700: '#846358',
+              800: '#43302b',
+              900: '#271916',
+            },
+            caribe: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Estilos suaves adicionales para scrollbar y animaciones sutiles */
+    .fade-in {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Evita scroll horizontal accidental en móviles */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+  </style>
+</head>
+<body class="bg-cafe-50 text-cafe-900 font-sans antialiased selection:bg-caribe-600 selection:text-white">
+
+  <!-- ==================== BARRA DE NAVEGACIÓN FIJA (VISIBLE EN TODAS LAS PÁGINAS) ==================== -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-cafe-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+
+        <!-- Logotipo SVG propio del local (Cafetini La Ceiba) -->
+        <a href="#inicio" onclick="navigateTo('inicio')" class="flex items-center gap-3 group focus:outline-none">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-cafe-900 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-200">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Cafetini La Ceiba">
+              <!-- Ola del Caribe en la base -->
+              <path d="M10 47C16 43 22 51 28 47C34 43 40 51 46 47C49 45 52 46 54 47" stroke="#2dd4bf" stroke-width="3.2" stroke-linecap="round"/>
+              <!-- Taza de café artesanal -->
+              <path d="M18 24H42V34C42 39.5228 37.5228 44 32 44H28C22.4772 44 18 39.5228 18 34V24Z" fill="#f5ebe6" stroke="#f5ebe6" stroke-width="2"/>
+              <!-- Asa de la taza -->
+              <path d="M42 27H46C48.7614 27 51 29.2386 51 32C51 34.7614 48.7614 37 46 37H42" stroke="#f5ebe6" stroke-width="3" stroke-linecap="round"/>
+              <!-- Aroma / hoja caribeña -->
+              <path d="M26 18C26 15 29 14 29 11" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M34 19C34 16 37 15 37 12" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-lg sm:text-xl font-extrabold tracking-tight text-cafe-900 leading-none">
+              Cafetini <span class="text-caribe-700">La Ceiba</span>
+            </span>
+            <span class="text-[11px] font-medium text-cafe-600 tracking-wide mt-0.5">
+              Cocina &amp; Café del Caribe
+            </span>
+          </div>
+        </a>
+
+        <!-- Menú principal de escritorio (5 páginas requeridas) -->
+        <nav aria-label="Navegación principal" class="hidden md:flex items-center gap-1 lg:gap-2">
+          <button data-nav="inicio" onclick="navigateTo('inicio')" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors">Inicio</button>
+          <button data-nav="historia" onclick="navigateTo('historia')" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors">Historia</button>
+          <button data-nav="tienda" onclick="navigateTo('tienda')" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors">Tienda (Menú)</button>
+          <button data-nav="blog" onclick="navigateTo('blog')" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors">Blog</button>
+          <button data-nav="contacto" onclick="navigateTo('contacto')" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors">Contacto</button>
         </nav>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-                <div class="d-flex justify-content-center">
-                    <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
-                        <a class="btn btn-primary" href="#about">Get Started</a>
-                    </div>
-                </div>
+
+        <!-- Botón de Carrito + Botón de Menú Móvil -->
+        <div class="flex items-center gap-2">
+          <button onclick="toggleCart(true)" aria-label="Abrir carrito de compras" class="relative inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-caribe-700 hover:bg-caribe-800 text-white text-sm font-semibold shadow-sm transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            <span class="hidden sm:inline">Pedido</span>
+            <span id="cart-count-badge" class="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-amber-400 text-cafe-900 text-xs font-extrabold">0</span>
+          </button>
+
+          <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Abrir menú móvil" class="md:hidden p-2.5 rounded-xl text-cafe-800 hover:bg-cafe-100 focus:outline-none">
+            <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menú desplegable para móviles -->
+      <div id="mobile-menu" class="md:hidden hidden pb-4 pt-1 border-t border-cafe-100">
+        <div class="flex flex-col gap-1 mt-2">
+          <button data-nav="inicio" onclick="navigateTo('inicio'); toggleMobileMenu(false)" class="nav-link w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors">1. Inicio</button>
+          <button data-nav="historia" onclick="navigateTo('historia'); toggleMobileMenu(false)" class="nav-link w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors">2. Historia</button>
+          <button data-nav="tienda" onclick="navigateTo('tienda'); toggleMobileMenu(false)" class="nav-link w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors">3. Tienda (Menú)</button>
+          <button data-nav="blog" onclick="navigateTo('blog'); toggleMobileMenu(false)" class="nav-link w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors">4. Blog</button>
+          <button data-nav="contacto" onclick="navigateTo('contacto'); toggleMobileMenu(false)" class="nav-link w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-colors">5. Contacto</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== CONTENEDOR PRINCIPAL DE LAS 5 PÁGINAS ==================== -->
+  <main class="pt-16 sm:pt-20 min-h-screen">
+
+    <!-- ==================== PÁGINA 1: INICIO ==================== -->
+    <section id="page-inicio" class="page-view fade-in">
+      <!-- Hero principal con presentación del local en La Ceiba y datos académicos -->
+      <div class="relative overflow-hidden bg-gradient-to-br from-cafe-900 via-cafe-800 to-caribe-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+            <!-- Columna izquierda: Identidad, bienvenida y llamadas a la acción -->
+            <div class="lg:col-span-7 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs sm:text-sm font-medium text-amber-300">
+                <span>🌴 La Ceiba, Atlántida • Brisa Caribeña &amp; Sabor Local</span>
+              </div>
+
+              <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                El sabor de <span class="text-amber-300">La Ceiba</span> en cada taza y cada plato.
+              </h1>
+
+              <p class="text-base sm:text-lg text-cafe-100 max-w-2xl leading-relaxed">
+                Bienvenido a <strong class="text-white">Cafetini La Ceiba</strong>, un espacio acogedor cerca de la costa donde celebramos los desayunos catrachos, el café de altura hondureño, baleadas recién hechas, bebidas frías refrescantes y antojos preparados al momento.
+              </p>
+
+              <!-- Botones de navegación rápida -->
+              <div class="flex flex-wrap items-center gap-3 sm:gap-4 pt-1">
+                <button onclick="navigateTo('tienda')" class="px-6 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-cafe-900 font-bold text-sm sm:text-base shadow-lg transition-all">
+                  Explorar Tienda y Menú (20+ opciones)
+                </button>
+                <button onclick="navigateTo('historia')" class="px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold text-sm sm:text-base transition-all">
+                  Conocer Nuestra Historia
+                </button>
+              </div>
             </div>
-        </header>
-        <!-- About-->
-        <section class="about-section text-center" id="about">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8">
-                        <h2 class="text-white mb-4">Built with Bootstrap 5</h2>
-                        <p class="text-white-50">
-                            Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on
-                            <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
-                            The theme is open source, and you can use it for any purpose, personal or commercial.
-                        </p>
-                    </div>
+
+            <!-- Columna derecha: Tarjeta de Logo Propio y Datos del Estudiante (Requerimiento UTH) -->
+            <div class="lg:col-span-5">
+              <div class="bg-white text-cafe-900 rounded-3xl p-6 sm:p-7 shadow-2xl border border-cafe-200">
+                <div class="flex items-center gap-4 pb-5 border-b border-cafe-100">
+                  <!-- Logo diseñado a medida -->
+                  <div class="w-16 h-16 rounded-2xl bg-cafe-900 flex items-center justify-center shrink-0 shadow-md">
+                    <svg class="w-11 h-11" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10 47C16 43 22 51 28 47C34 43 40 51 46 47C49 45 52 46 54 47" stroke="#2dd4bf" stroke-width="3.5" stroke-linecap="round"/>
+                      <path d="M18 24H42V34C42 39.5228 37.5228 44 32 44H28C22.4772 44 18 39.5228 18 34V24Z" fill="#f5ebe6"/>
+                      <path d="M42 27H46C48.7614 27 51 29.2386 51 32C51 34.7614 48.7614 37 46 37H42" stroke="#f5ebe6" stroke-width="3" stroke-linecap="round"/>
+                      <path d="M26 18C26 15 29 14 29 11" stroke="#fbbf24" stroke-width="2.6" stroke-linecap="round"/>
+                      <path d="M34 19C34 16 37 15 37 12" stroke="#fbbf24" stroke-width="2.6" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-caribe-700">Identidad Oficial del Proyecto</span>
+                    <h2 class="text-xl font-extrabold text-cafe-900">Cafetini La Ceiba</h2>
+                    <p class="text-xs text-cafe-600">Logo original diseñado para el proyecto</p>
+                  </div>
                 </div>
-                <img class="img-fluid" src="assets/img/ipad.png" alt="..." />
+
+                <!-- Datos obligatorios solicitados en la rúbrica -->
+                <dl class="mt-5 space-y-3 text-sm">
+                  <div class="flex flex-col sm:flex-row sm:justify-between gap-1 p-3 rounded-xl bg-cafe-50">
+                    <dt class="font-semibold text-cafe-600">Estudiante:</dt>
+                    <dd class="font-bold text-cafe-900">Oscar Fabricio Lopez Martinez</dd>
+                  </div>
+                  <div class="flex flex-col sm:flex-row sm:justify-between gap-1 p-3 rounded-xl bg-cafe-50">
+                    <dt class="font-semibold text-cafe-600">Número de Cuenta:</dt>
+                    <dd class="font-bold text-caribe-800">[Tu Número de Cuenta - Editar aquí]</dd>
+                  </div>
+                  <div class="flex flex-col sm:flex-row sm:justify-between gap-1 p-3 rounded-xl bg-cafe-50">
+                    <dt class="font-semibold text-cafe-600">Clase:</dt>
+                    <dd class="font-bold text-cafe-900">Informática Aplicada - III Parcial (UTH)</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
-        </section>
-        <!-- Projects-->
-        <section class="projects-section bg-light" id="projects">
-            <div class="container px-4 px-lg-5">
-                <!-- Featured Project Row-->
-                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg" alt="..." /></div>
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="featured-text text-center text-lg-left">
-                            <h4>Shoreline</h4>
-                            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project One Row-->
-                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-01.jpg" alt="..." /></div>
-                    <div class="col-lg-6">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">Misty</h4>
-                                    <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project Two Row-->
-                <div class="row gx-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-02.jpg" alt="..." /></div>
-                    <div class="col-lg-6 order-lg-first">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 class="text-white">Mountains</h4>
-                                    <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Destacados rápidos y acceso directo a todas las secciones -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-xs font-bold uppercase tracking-widest text-caribe-700">Lo Mejor de Nuestra Casa</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-cafe-900 mt-1">¿Qué se te antoja hoy en La Ceiba?</h2>
+          <p class="text-cafe-600 mt-2 text-sm sm:text-base">
+            Preparaciones frescas cada mañana con ingredientes de la zona norte y el calor característico de nuestra ciudad puerto.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Tarjeta 1 -->
+          <div class="bg-white rounded-2xl p-6 border border-cafe-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-2xl mb-4">🥞</div>
+              <h3 class="text-lg font-bold text-cafe-900">Desayunos Ceibeños</h3>
+              <p class="text-sm text-cafe-600 mt-1.5">Plátano frito, frijoles refritos, mantequilla rala, huevos al gusto y café recién colado.</p>
             </div>
-        </section>
-        <!-- Signup-->
-        <section class="signup-section" id="signup">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-md-10 col-lg-8 mx-auto text-center">
-                        <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                        <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Email address input-->
-                            <div class="row input-group-newsletter">
-                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Enter email address..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
-                                <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notify Me!</button></div>
-                            </div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3 mt-2 text-white">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>
-                        </form>
-                    </div>
-                </div>
+            <button onclick="navigateTo('tienda', 'Desayunos')" class="mt-5 text-sm font-bold text-caribe-700 hover:text-caribe-800 inline-flex items-center gap-1">
+              Ver desayunos →
+            </button>
+          </div>
+
+          <!-- Tarjeta 2 -->
+          <div class="bg-white rounded-2xl p-6 border border-cafe-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-cafe-100 text-cafe-800 flex items-center justify-center text-2xl mb-4">☕</div>
+              <h3 class="text-lg font-bold text-cafe-900">Cafés &amp; Bebidas Frías</h3>
+              <p class="text-sm text-cafe-600 mt-1.5">Espresso, capuchinos, cold brew tropical y granitas ideales para el clima cálido de La Ceiba.</p>
             </div>
-        </section>
-        <!-- Contact-->
-        <section class="contact-section bg-black">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Address</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">4923 Market Street, Orlando FL</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-envelope text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Email</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"><a href="#!">hello@yourdomain.com</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Phone</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">+1 (555) 902-8832</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="social d-flex justify-content-center">
-                    <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
-                </div>
+            <button onclick="navigateTo('tienda', 'Cafés y Bebidas')" class="mt-5 text-sm font-bold text-caribe-700 hover:text-caribe-800 inline-flex items-center gap-1">
+              Ver bebidas →
+            </button>
+          </div>
+
+          <!-- Tarjeta 3 -->
+          <div class="bg-white rounded-2xl p-6 border border-cafe-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-caribe-100 text-caribe-800 flex items-center justify-center text-2xl mb-4">🌮</div>
+              <h3 class="text-lg font-bold text-cafe-900">Baleadas &amp; Almuerzos</h3>
+              <p class="text-sm text-cafe-600 mt-1.5">Tortillas de harina suaves, baleadas especiales, pollo chuco express, hamburguesas y bowls.</p>
             </div>
-        </section>
-        <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div></footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+            <button onclick="navigateTo('tienda', 'Baleadas y Almuerzos')" class="mt-5 text-sm font-bold text-caribe-700 hover:text-caribe-800 inline-flex items-center gap-1">
+              Ver almuerzos →
+            </button>
+          </div>
+
+          <!-- Tarjeta 4 -->
+          <div class="bg-white rounded-2xl p-6 border border-cafe-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center text-2xl mb-4">🍰</div>
+              <h3 class="text-lg font-bold text-cafe-900">Postres &amp; Combos</h3>
+              <p class="text-sm text-cafe-600 mt-1.5">Tres leches de coco, marquesa de café, brownies tibios y combos completos para compartir.</p>
+            </div>
+            <button onclick="navigateTo('tienda', 'Postres y Combos')" class="mt-5 text-sm font-bold text-caribe-700 hover:text-caribe-800 inline-flex items-center gap-1">
+              Ver postres y combos →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PÁGINA 2: HISTORIA ==================== -->
+    <section id="page-historia" class="page-view hidden fade-in">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <!-- Encabezado de Historia -->
+        <div class="max-w-3xl mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest text-caribe-700">Nuestra Esencia</span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-cafe-900 mt-2">De un rincón ceibeño a tu mesa diaria</h1>
+          <p class="text-base sm:text-lg text-cafe-600 mt-4 leading-relaxed">
+            Cafetini La Ceiba nació con el propósito de ofrecer un lugar cálido, limpio y cercano donde estudiantes, trabajadores, familias y visitantes disfruten comida casera hondureña y buen café sin prisas.
+          </p>
+        </div>
+
+        <!-- Bloque narrativo de origen, ingredientes y comunidad -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-14">
+          <article class="bg-white rounded-3xl p-7 border border-cafe-200 shadow-sm">
+            <div class="w-11 h-11 rounded-2xl bg-cafe-900 text-amber-300 flex items-center justify-center font-extrabold text-lg mb-5">01</div>
+            <h2 class="text-xl font-bold text-cafe-900 mb-3">Origen en La Ceiba</h2>
+            <p class="text-sm sm:text-base text-cafe-600 leading-relaxed">
+              Inspirados en la alegría de La Ceiba—la novia de Honduras—abrimos nuestras puertas como un pequeño punto de encuentro para comenzar el día con energía, desayunos abundantes y una taza de café aromático antes de clases o jornada laboral.
+            </p>
+          </article>
+
+          <article class="bg-white rounded-3xl p-7 border border-cafe-200 shadow-sm">
+            <div class="w-11 h-11 rounded-2xl bg-caribe-700 text-white flex items-center justify-center font-extrabold text-lg mb-5">02</div>
+            <h2 class="text-xl font-bold text-cafe-900 mb-3">Ingredientes Locales Frescos</h2>
+            <p class="text-sm sm:text-base text-cafe-600 leading-relaxed">
+              Priorizamos lácteos, plátanos, frutas tropicales y granos de café cultivados por productores de la región norte. Cada tortilla se palmea y cocina al momento, y cada bebida fría se prepara con hielo limpio y fruta natural.
+            </p>
+          </article>
+
+          <article class="bg-white rounded-3xl p-7 border border-cafe-200 shadow-sm">
+            <div class="w-11 h-11 rounded-2xl bg-amber-500 text-cafe-950 flex items-center justify-center font-extrabold text-lg mb-5">03</div>
+            <h2 class="text-xl font-bold text-cafe-900 mb-3">Compromiso con la Comunidad</h2>
+            <p class="text-sm sm:text-base text-cafe-600 leading-relaxed">
+              Creemos en el comercio justo y en apoyar el talento y el emprendimiento local. Mantenemos precios accesibles para estudiantes universitarios y fomentamos prácticas responsables con el entorno costero de Atlántida.
+            </p>
+          </article>
+        </div>
+
+        <!-- Franja de valores institucionales / gastronómicos -->
+        <div class="bg-cafe-900 text-white rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div class="space-y-2 max-w-2xl">
+            <h3 class="text-2xl font-extrabold">Calidad constante en cada visita</h3>
+            <p class="text-cafe-200 text-sm sm:text-base">
+              Conoce nuestro menú completo de más de 20 opciones y arma tu pedido en segundos desde la tienda interactiva.
+            </p>
+          </div>
+          <button onclick="navigateTo('tienda')" class="px-6 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-cafe-900 font-bold text-sm sm:text-base shrink-0 transition-colors">
+            Ir a la Tienda / Menú →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PÁGINA 3: TIENDA (MENÚ CON 22 ARTÍCULOS Y CARRITO) ==================== -->
+    <section id="page-tienda" class="page-view hidden fade-in">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+
+        <!-- Cabecera de Tienda + Buscador + Botón Carrito -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-caribe-700">Tienda &amp; Menú Digital</span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-cafe-900 mt-1">Nuestro Menú Completo</h1>
+            <p class="text-cafe-600 mt-2 text-sm sm:text-base">
+              22 platillos, bebidas y combos preparados al estilo de La Ceiba. Precios expresados en Lempiras (L.).
+            </p>
+          </div>
+
+          <!-- Buscador de platillos -->
+          <div class="w-full md:w-80">
+            <label for="menu-search" class="sr-only">Buscar en el menú</label>
+            <div class="relative">
+              <input id="menu-search" type="text" oninput="renderMenu()" placeholder="Buscar baleada, café, combo..." class="w-full pl-10 pr-4 py-3 rounded-2xl bg-white border border-cafe-300 text-sm text-cafe-900 placeholder-cafe-400 focus:outline-none focus:ring-2 focus:ring-caribe-600" />
+              <svg class="w-5 h-5 text-cafe-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filtros por categoría -->
+        <div id="category-filters" class="flex flex-wrap gap-2 mb-8">
+          <!-- Generado dinámicamente por JS -->
+        </div>
+
+        <!-- Grid de artículos del menú -->
+        <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Generado dinámicamente por JS con 22 artículos -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PÁGINA 4: BLOG (2 ARTÍCULOS COMPLETOS) ==================== -->
+    <section id="page-blog" class="page-view hidden fade-in">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="max-w-3xl mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest text-caribe-700">Blog Gastronómico &amp; Cultural</span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-cafe-900 mt-2">Historias y Sabores de La Ceiba</h1>
+          <p class="text-base sm:text-lg text-cafe-600 mt-3">
+            Artículos dedicados a nuestra cultura culinaria, el café hondureño y la selección de ingredientes locales de calidad.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Artículo de Blog #1 -->
+          <article class="bg-white rounded-3xl overflow-hidden border border-cafe-200 shadow-sm flex flex-col">
+            <!-- Ilustración temática SVG del artículo 1 -->
+            <div class="h-52 bg-gradient-to-r from-cafe-900 to-cafe-700 flex items-center justify-center p-6">
+              <svg class="w-44 h-44" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="90" cy="90" r="74" fill="#ffffff" fill-opacity="0.08"/>
+                <ellipse cx="90" cy="118" rx="48" ry="12" fill="#d2bab0" fill-opacity="0.35"/>
+                <path d="M56 74H124V104C124 117.255 113.255 128 100 128H80C66.7452 128 56 117.255 56 104V74Z" fill="#f5ebe6"/>
+                <path d="M124 82H134C140.627 82 146 87.3726 146 94C146 100.627 140.627 106 134 106H124" stroke="#f5ebe6" stroke-width="6" stroke-linecap="round"/>
+                <path d="M74 58C74 48 84 46 84 36" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
+                <path d="M96 60C96 50 106 48 106 38" stroke="#2dd4bf" stroke-width="4.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="p-7 sm:p-8 space-y-4 flex-1">
+              <div class="flex items-center gap-3 text-xs font-bold text-caribe-700 uppercase tracking-wider">
+                <span>Cultura Ceibeña</span>
+                <span>•</span>
+                <span>Lectura de 4 min</span>
+              </div>
+              <h2 class="text-2xl font-extrabold text-cafe-900">
+                La cultura del café y los desayunos en el ritmo cálido de La Ceiba
+              </h2>
+              <p class="text-sm sm:text-base text-cafe-600 leading-relaxed">
+                En La Ceiba, el día comienza temprano entre el aroma del café recién colado, el crujir del plátano maduro frito y la brisa húmeda que llega desde el mar Caribe. A diferencia de otras ciudades con mañanas frías, el desayuno ceibeño combina la contundencia tradicional hondureña—frijoles refritos, mantequilla crema, huevos y queso—con bebidas refrescantes como jugos naturales de naranja, piña o café frío con hielo.
+              </p>
+              <p class="text-sm sm:text-base text-cafe-600 leading-relaxed">
+                Para quienes estudian o trabajan cerca del centro y zonas universitarias, compartir una mesa antes de iniciar actividades no solo recarga energías: fortalece la convivencia y mantiene viva una tradición que da identidad a nuestra costa norte.
+              </p>
+            </div>
+          </article>
+
+          <!-- Artículo de Blog #2 -->
+          <article class="bg-white rounded-3xl overflow-hidden border border-cafe-200 shadow-sm flex flex-col">
+            <!-- Ilustración temática SVG del artículo 2 -->
+            <div class="h-52 bg-gradient-to-r from-caribe-800 to-caribe-600 flex items-center justify-center p-6">
+              <svg class="w-44 h-44" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="90" cy="90" r="74" fill="#ffffff" fill-opacity="0.1"/>
+                <path d="M50 112C50 86 70 66 96 66H126C126 94 106 116 78 116H50V112Z" fill="#a7f3d0"/>
+                <path d="M62 104C82 96 98 84 114 74" stroke="#065f46" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="66" cy="56" r="14" fill="#fbbf24"/>
+                <path d="M66 42C72 42 76 46 76 52" stroke="#fef08a" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="p-7 sm:p-8 space-y-4 flex-1">
+              <div class="flex items-center gap-3 text-xs font-bold text-caribe-700 uppercase tracking-wider">
+                <span>Calidad &amp; Origen</span>
+                <span>•</span>
+                <span>Lectura de 4 min</span>
+              </div>
+              <h2 class="text-2xl font-extrabold text-cafe-900">
+                Cómo elegir ingredientes locales frescos para una cocina más sabrosa y responsable
+              </h2>
+              <p class="text-sm sm:text-base text-cafe-600 leading-relaxed">
+                El secreto de un buen plato no reside en recetas complicadas, sino en la frescura de sus materias primas. Al elegir plátanos, lácteos, vegetales y café de productores regionales, se reduce el tiempo de transporte y se conservan mejor el sabor, el aroma y el valor nutricional de cada ingrediente.
+              </p>
+              <p class="text-sm sm:text-base text-cafe-600 leading-relaxed">
+                En Cafetini La Ceiba revisamos diariamente la textura y frescura de nuestros insumos, asegurando tortillas suaves, salsas recién preparadas y bebidas equilibradas. Apostar por lo local también impulsa la economía de las familias productoras de Atlántida y zonas vecinas.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PÁGINA 5: CONTACTO ==================== -->
+    <section id="page-contacto" class="page-view hidden fade-in">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="max-w-3xl mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest text-caribe-700">Escríbenos o Visítanos</span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-cafe-900 mt-2">Contacto en La Ceiba</h1>
+          <p class="text-base sm:text-lg text-cafe-600 mt-3">
+            ¿Tienes consultas sobre pedidos, eventos pequeños o sugerencias? Completa el formulario o revisa nuestra información de atención.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Formulario interactivo funcional -->
+          <div class="lg:col-span-7 bg-white rounded-3xl p-7 sm:p-9 border border-cafe-200 shadow-sm">
+            <h2 class="text-xl font-bold text-cafe-900 mb-6">Envíanos un mensaje</h2>
+
+            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="contact-name" class="block text-sm font-semibold text-cafe-800 mb-1.5">Nombre completo</label>
+                  <input id="contact-name" type="text" required placeholder="Ej. María José Castellanos" class="w-full px-4 py-3 rounded-xl border border-cafe-300 bg-cafe-50/50 text-sm text-cafe-900 focus:outline-none focus:ring-2 focus:ring-caribe-600" />
+                </div>
+                <div>
+                  <label for="contact-email" class="block text-sm font-semibold text-cafe-800 mb-1.5">Correo electrónico</label>
+                  <input id="contact-email" type="email" required placeholder="correo@ejemplo.hn" class="w-full px-4 py-3 rounded-xl border border-cafe-300 bg-cafe-50/50 text-sm text-cafe-900 focus:outline-none focus:ring-2 focus:ring-caribe-600" />
+                </div>
+              </div>
+
+              <div>
+                <label for="contact-topic" class="block text-sm font-semibold text-cafe-800 mb-1.5">Motivo de contacto</label>
+                <select id="contact-topic" class="w-full px-4 py-3 rounded-xl border border-cafe-300 bg-cafe-50/50 text-sm text-cafe-900 focus:outline-none focus:ring-2 focus:ring-caribe-600">
+                  <option value="Pedido Especial">Pedido especial o para llevar</option>
+                  <option value="Consulta de Menú">Consulta sobre menú o precios</option>
+                  <option value="Sugerencia">Sugerencia o comentario</option>
+                  <option value="Proyecto Académico">Información del proyecto / local</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="contact-message" class="block text-sm font-semibold text-cafe-800 mb-1.5">Mensaje</label>
+                <textarea id="contact-message" rows="4" required placeholder="Escribe tu mensaje aquí..." class="w-full px-4 py-3 rounded-xl border border-cafe-300 bg-cafe-50/50 text-sm text-cafe-900 focus:outline-none focus:ring-2 focus:ring-caribe-600"></textarea>
+              </div>
+
+              <button type="submit" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-caribe-700 hover:bg-caribe-800 text-white font-bold text-sm sm:text-base shadow-sm transition-colors">
+                Enviar Mensaje
+              </button>
+            </form>
+
+            <!-- Mensaje de confirmación dentro de la página (sin alert()) -->
+            <div id="contact-confirmation" class="hidden mt-5 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-sm font-medium">
+              <!-- Se llena dinámicamente -->
+            </div>
+          </div>
+
+          <!-- Información de ubicación, horarios y redes -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="bg-white rounded-3xl p-7 border border-cafe-200 shadow-sm space-y-5">
+              <h2 class="text-xl font-bold text-cafe-900">Ubicación y Horarios</h2>
+
+              <div class="space-y-4 text-sm text-cafe-700">
+                <div class="flex items-start gap-3">
+                  <span class="text-lg">📍</span>
+                  <div>
+                    <p class="font-bold text-cafe-900">Dirección en La Ceiba</p>
+                    <p>Barrio El Centro / Zona Viva, La Ceiba, Atlántida, Honduras.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <span class="text-lg">🕒</span>
+                  <div>
+                    <p class="font-bold text-cafe-900">Horario de Atención</p>
+                    <p>Lunes a Sábado: 6:30 AM – 8:30 PM</p>
+                    <p>Domingo: 7:30 AM – 5:00 PM</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <span class="text-lg">📞</span>
+                  <div>
+                    <p class="font-bold text-cafe-900">Teléfono y Redes</p>
+                    <p>Tel / WhatsApp: +504 2440-0192</p>
+                    <p>Instagram &amp; Facebook: @cafetinilaceiba</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mapa ilustrativo de referencia local en La Ceiba -->
+            <div class="bg-cafe-900 text-white rounded-3xl p-6 border border-cafe-800 shadow-sm">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-300">Referencia Local</span>
+                <span class="text-xs px-2.5 py-1 rounded-full bg-white/10">Atlántida, HN</span>
+              </div>
+              <p class="text-sm text-cafe-100 leading-relaxed">
+                A pocos minutos del malecón y las principales vías de La Ceiba, con acceso peatonal y estacionamiento cercano.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== PIE DE PÁGINA GLOBAL (VISIBLE EN TODAS LAS SECCIONES) ==================== -->
+  <footer class="bg-cafe-900 text-cafe-200 border-t border-cafe-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-cafe-800">
+        <div>
+          <p class="text-lg font-extrabold text-white">Cafetini La Ceiba</p>
+          <p class="text-xs sm:text-sm text-cafe-300 mt-1">
+            Proyecto III Parcial • Informática Aplicada (UTH) — Oscar Fabricio Lopez Martinez
+          </p>
+        </div>
+
+        <!-- Enlaces rápidos funcionales a las 5 páginas -->
+        <div class="flex flex-wrap gap-3 text-xs sm:text-sm font-semibold">
+          <button onclick="navigateTo('inicio')" class="hover:text-amber-300 transition-colors">Inicio</button>
+          <span>•</span>
+          <button onclick="navigateTo('historia')" class="hover:text-amber-300 transition-colors">Historia</button>
+          <span>•</span>
+          <button onclick="navigateTo('tienda')" class="hover:text-amber-300 transition-colors">Tienda (Menú)</button>
+          <span>•</span>
+          <button onclick="navigateTo('blog')" class="hover:text-amber-300 transition-colors">Blog</button>
+          <span>•</span>
+          <button onclick="navigateTo('contacto')" class="hover:text-amber-300 transition-colors">Contacto</button>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cafe-400">
+        <p>© <span id="current-year">2026</span> Cafetini La Ceiba. Todos los derechos reservados.</p>
+        <p>La Ceiba, Atlántida, Honduras</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== PANEL LATERAL DE CARRITO DE COMPRAS INTERACTIVO ==================== -->
+  <div id="cart-backdrop" onclick="toggleCart(false)" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs hidden"></div>
+  <aside id="cart-drawer" aria-label="Carrito de compras" class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <!-- Encabezado del carrito -->
+    <div class="px-6 py-5 border-b border-cafe-200 flex items-center justify-between">
+      <div>
+        <h2 class="text-lg font-extrabold text-cafe-900">Tu Pedido en Cafetini</h2>
+        <p class="text-xs text-cafe-500">Simulación interactiva en Lempiras (L.)</p>
+      </div>
+      <button onclick="toggleCart(false)" aria-label="Cerrar carrito" class="p-2 rounded-xl text-cafe-600 hover:bg-cafe-100">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Lista de artículos agregados -->
+    <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+      <!-- Generado por JS -->
+    </div>
+
+    <!-- Pie del carrito con total y confirmación -->
+    <div class="p-6 border-t border-cafe-200 bg-cafe-50 space-y-4">
+      <div class="flex items-center justify-between text-base font-extrabold text-cafe-900">
+        <span>Total estimado:</span>
+        <span id="cart-total-price" class="text-xl text-caribe-800">L. 0.00</span>
+      </div>
+
+      <div id="cart-status-banner" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <button onclick="clearCart()" class="px-4 py-3 rounded-xl border border-cafe-300 bg-white hover:bg-cafe-100 text-cafe-800 text-xs sm:text-sm font-bold transition-colors">
+          Vaciar
+        </button>
+        <button onclick="checkoutOrder()" class="px-4 py-3 rounded-xl bg-caribe-700 hover:bg-caribe-800 text-white text-xs sm:text-sm font-bold shadow-sm transition-colors">
+          Confirmar Pedido
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== LÓGICA DE NAVEGACIÓN, MENÚ (22 ARTÍCULOS), CARRITO Y CONTACTO ==================== -->
+  <script>
+    /**
+     * Catálogo completo de 22 artículos distribuidos en 4 categorías
+     * para cumplir con el requisito de "al menos 20 artículos (menú)".
+     */
+    const MENU_ITEMS = [
+      // DESAYUNOS (5 artículos)
+      { id: 1, name: "Desayuno Ceibeño Clásico", category: "Desayunos", price: 135, emoji: "🍳", badge: "Favorito", desc: "Huevos revueltos, frijoles refritos, plátano frito, mantequilla rala, queso y café negro." },
+      { id: 2, name: "Típico con Chorizo Parrillero", category: "Desayunos", price: 155, emoji: "🌭", badge: "Abundante", desc: "Chorizo artesanal asado, frijoles parados, maduros fritos, cuajada fresca y tortillas." },
+      { id: 3, name: "Panqueques de Banano y Miel", category: "Desayunos", price: 120, emoji: "🥞", badge: "Dulce", desc: "Tres panqueques esponjosos con rodajas de banano local, canela y miel de abeja." },
+      { id: 4, name: "Omelette de Vegetales Frescos", category: "Desayunos", price: 130, emoji: "🥗", badge: "Ligero", desc: "Tres huevos batidos con chile dulce, cebolla, tomate, espinaca y pan tostado." },
+      { id: 5, name: "Tostadas Francesas Caribeñas", category: "Desayunos", price: 125, emoji: "🍞", badge: "Nuevo", desc: "Pan brioche dorado con toque de vainilla, coco rallado tostado y sirope suave." },
+
+      // CAFÉS Y BEBIDAS (6 artículos)
+      { id: 6, name: "Café Negro de Palo / Altura", category: "Cafés y Bebidas", price: 45, emoji: "☕", badge: "Tradicional", desc: "Taza caliente de café hondureño de aroma intenso y cuerpo balanceado." },
+      { id: 7, name: "Capuchino Cremoso con Canela", category: "Cafés y Bebidas", price: 68, emoji: "🤎", badge: "Popular", desc: "Espresso doble con leche vaporizada espumosa y un toque de canela molida." },
+      { id: 8, name: "Cold Brew Caribeño con Hielo", category: "Cafés y Bebidas", price: 75, emoji: "🧊", badge: "Refrescante", desc: "Extracción en frío de 16 horas servida con hielo y nota sutil de vainilla." },
+      { id: 9, name: "Granita de Tamarindo Natural", category: "Cafés y Bebidas", price: 60, emoji: "🥤", badge: "Clima Tropical", desc: "Bebida helada de pulpa natural de tamarindo, ideal para tardes calurosas en La Ceiba." },
+      { id: 10, name: "Limonada con Hierbabuena", category: "Cafés y Bebidas", price: 55, emoji: "🍋", badge: "Fresco", desc: "Jugo de limón recién exprimido con hojas frescas de hierbabuena y hielo picado." },
+      { id: 11, name: "Batido de Piña y Coco", category: "Cafés y Bebidas", price: 78, emoji: "🍍", badge: "Tropical", desc: "Mezcla cremosa de piña dulce y leche de coco bien fría." },
+
+      // BALEADAS Y ALMUERZOS (6 artículos)
+      { id: 12, name: "Baleada Especial de la Casa", category: "Baleadas y Almuerzos", price: 65, emoji: "🌮", badge: "Clásico", desc: "Tortilla de harina grande con frijoles refritos, mantequilla, queso rallado y huevo." },
+      { id: 13, name: "Baleada Doble con Pollo Desmenuzado", category: "Baleadas y Almuerzos", price: 95, emoji: "🌯", badge: "Llenadora", desc: "Doble tortilla suave con frijoles, mantequilla, queso, aguacate y pollo sazonado." },
+      { id: 14, name: "Pollo Chuco Express Ceibeño", category: "Baleadas y Almuerzos", price: 145, emoji: "🍗", badge: "Muy Pedido", desc: "Crujiente pieza de pollo frito sobre tajadas de guineo verde, repollo, chimol y salsa." },
+      { id: 15, name: "Hamburguesa Artesanal Cafetini", category: "Baleadas y Almuerzos", price: 165, emoji: "🍔", badge: "Gourmet", desc: "Carne de res sazonada a la plancha, queso cheddar, lechuga, tomate y papas fritas." },
+      { id: 16, name: "Bowl de Pollo Grillado y Arroz", category: "Baleadas y Almuerzos", price: 150, emoji: "🍲", badge: "Balanceado", desc: "Pechuga a la plancha, arroz blanco, frijoles, elote dulce y aderezo de cilantro." },
+      { id: 17, name: "Club Sándwich de Pavo y Jamón", category: "Baleadas y Almuerzos", price: 135, emoji: "🥪", badge: "Rápido", desc: "Pan de molde tostado en tres niveles con jamón, queso, tomate, lechuga y aderezo." },
+
+      // POSTRES Y COMBOS (5 artículos)
+      { id: 18, name: "Tres Leches con Toque de Coco", category: "Postres y Combos", price: 85, emoji: "🍰", badge: "Postre", desc: "Bizcocho húmedo bañado en mezcla de tres leches con cubierta suave y coco." },
+      { id: 19, name: "Marquesa de Café Hondureño", category: "Postres y Combos", price: 80, emoji: "🍮", badge: "Postre", desc: "Capas cremosas de café y galleta suave con acabado de cacao." },
+      { id: 20, name: "Brownie Tibio con Helado", category: "Postres y Combos", price: 95, emoji: "🍫", badge: "Dulce", desc: "Brownie de chocolate oscuro servido tibio acompañado de una bola de helado." },
+      { id: 21, name: "Combo Mañanero Universitario", category: "Postres y Combos", price: 140, emoji: "🎒", badge: "Ahorro", desc: "Dos baleadas sencillas más café negro o capuchino mediano." },
+      { id: 22, name: "Combo Tarde Ceibeña para Dos", category: "Postres y Combos", price: 245, emoji: "🤝", badge: "Compartir", desc: "Dos bebidas frías o cafés especiales más dos porciones de postre a elegir." }
+    ];
+
+    const CATEGORIES = ["Todos", "Desayunos", "Cafés y Bebidas", "Baleadas y Almuerzos", "Postres y Combos"];
+
+    // Estado de la aplicación
+    let activePage = "inicio";
+    let activeCategory = "Todos";
+    let cart = []; // { item, qty }
+
+    /**
+     * Navega entre las 5 secciones principales y actualiza el estado visual del menú.
+     */
+    function navigateTo(pageId, categoryFilter = null) {
+      activePage = pageId;
+
+      const pages = document.querySelectorAll(".page-view");
+      pages.forEach((sec) => {
+        if (sec.id === `page-${pageId}`) {
+          sec.classList.remove("hidden");
+        } else {
+          sec.classList.add("hidden");
+        }
+      });
+
+      if (pageId === "tienda" && categoryFilter) {
+        activeCategory = categoryFilter;
+        renderCategoryFilters();
+        renderMenu();
+      }
+
+      updateActiveNavStyles();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    /**
+     * Resalta el enlace activo en la barra superior y menú móvil.
+     */
+    function updateActiveNavStyles() {
+      const buttons = document.querySelectorAll(".nav-link");
+      buttons.forEach((btn) => {
+        const isCurrent = btn.getAttribute("data-nav") === activePage;
+        btn.classList.remove("bg-cafe-900", "text-white", "bg-caribe-700", "text-cafe-700", "hover:bg-cafe-100");
+        if (isCurrent) {
+          btn.classList.add("bg-cafe-900", "text-white");
+        } else {
+          btn.classList.add("text-cafe-700", "hover:bg-cafe-100");
+        }
+      });
+    }
+
+    /**
+     * Abre o cierra el menú desplegable en dispositivos móviles.
+     */
+    function toggleMobileMenu(forceState = null) {
+      const menu = document.getElementById("mobile-menu");
+      const openIcon = document.getElementById("menu-icon-open");
+      const closeIcon = document.getElementById("menu-icon-close");
+
+      const shouldOpen = forceState !== null ? forceState : menu.classList.contains("hidden");
+
+      if (shouldOpen) {
+        menu.classList.remove("hidden");
+        openIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+      } else {
+        menu.classList.add("hidden");
+        openIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+      }
+    }
+
+    /**
+     * Renderiza los botones de categorías en la Tienda.
+     */
+    function renderCategoryFilters() {
+      const container = document.getElementById("category-filters");
+      if (!container) return;
+
+      container.innerHTML = CATEGORIES.map((cat) => {
+        const active = cat === activeCategory;
+        const classes = active
+          ? "bg-cafe-900 text-white shadow-sm"
+          : "bg-white text-cafe-700 border border-cafe-200 hover:bg-cafe-100";
+        return `
+          <button onclick="selectCategory('${cat.replace(/'/g, "\\'")}')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-colors ${classes}">
+            ${cat}
+          </button>
+        `;
+      }).join("");
+    }
+
+    /**
+     * Cambia la categoría activa y vuelve a dibujar los artículos.
+     */
+    function selectCategory(cat) {
+      activeCategory = cat;
+      renderCategoryFilters();
+      renderMenu();
+    }
+
+    /**
+     * Renderiza los artículos filtrados del menú con precio en Lempiras (L.).
+     */
+    function renderMenu() {
+      const grid = document.getElementById("menu-grid");
+      const searchInput = document.getElementById("menu-search");
+      if (!grid) return;
+
+      const query = (searchInput ? searchInput.value : "").trim().toLowerCase();
+
+      const filtered = MENU_ITEMS.filter((item) => {
+        const matchesCategory = activeCategory === "Todos" || item.category === activeCategory;
+        const matchesQuery =
+          !query ||
+          item.name.toLowerCase().includes(query) ||
+          item.desc.toLowerCase().includes(query) ||
+          item.category.toLowerCase().includes(query);
+        return matchesCategory && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white rounded-3xl p-10 text-center border border-cafe-200">
+            <p class="text-lg font-bold text-cafe-900">No encontramos platillos con ese filtro</p>
+            <p class="text-sm text-cafe-600 mt-1">Prueba buscando otra palabra o selecciona "Todos".</p>
+            <button onclick="resetMenuFilters()" class="mt-4 px-5 py-2.5 rounded-xl bg-caribe-700 text-white text-sm font-bold">
+              Restablecer filtros
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map((item) => `
+        <article class="bg-white rounded-3xl p-5 border border-cafe-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-cafe-100 flex items-center justify-center text-2xl">
+                ${item.emoji}
+              </div>
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-caribe-50 text-caribe-800 border border-caribe-200">
+                ${item.badge}
+              </span>
+            </div>
+
+            <p class="text-[11px] font-bold uppercase tracking-wider text-cafe-500">${item.category}</p>
+            <h3 class="text-base sm:text-lg font-extrabold text-cafe-900 mt-0.5">${item.name}</h3>
+            <p class="text-xs sm:text-sm text-cafe-600 mt-1.5 leading-relaxed">${item.desc}</p>
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-cafe-100 flex items-center justify-between gap-2">
+            <span class="text-base sm:text-lg font-extrabold text-cafe-900">L. ${item.price.toFixed(2)}</span>
+            <button onclick="addToCart(${item.id})" class="px-3.5 py-2 rounded-xl bg-caribe-700 hover:bg-caribe-800 text-white text-xs sm:text-sm font-bold transition-colors">
+              + Agregar
+            </button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    /**
+     * Restablece búsqueda y categoría del menú.
+     */
+    function resetMenuFilters() {
+      activeCategory = "Todos";
+      const searchInput = document.getElementById("menu-search");
+      if (searchInput) searchInput.value = "";
+      renderCategoryFilters();
+      renderMenu();
+    }
+
+    /**
+     * Abre o cierra el panel lateral del carrito.
+     */
+    function toggleCart(open) {
+      const backdrop = document.getElementById("cart-backdrop");
+      const drawer = document.getElementById("cart-drawer");
+      const banner = document.getElementById("cart-status-banner");
+
+      if (open) {
+        backdrop.classList.remove("hidden");
+        drawer.classList.remove("translate-x-full");
+      } else {
+        backdrop.classList.add("hidden");
+        drawer.classList.add("translate-x-full");
+        if (banner) banner.classList.add("hidden");
+      }
+    }
+
+    /**
+     * Agrega un platillo al carrito o incrementa su cantidad.
+     */
+    function addToCart(itemId) {
+      const item = MENU_ITEMS.find((m) => m.id === itemId);
+      if (!item) return;
+
+      const existing = cart.find((entry) => entry.item.id === itemId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ item, qty: 1 });
+      }
+
+      const banner = document.getElementById("cart-status-banner");
+      if (banner) banner.classList.add("hidden");
+
+      renderCart();
+      toggleCart(true);
+    }
+
+    /**
+     * Modifica la cantidad de un elemento en el carrito.
+     */
+    function updateCartQty(itemId, delta) {
+      const idx = cart.findIndex((entry) => entry.item.id === itemId);
+      if (idx === -1) return;
+
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) {
+        cart.splice(idx, 1);
+      }
+      renderCart();
+    }
+
+    /**
+     * Vacía completamente el carrito.
+     */
+    function clearCart() {
+      cart = [];
+      const banner = document.getElementById("cart-status-banner");
+      if (banner) banner.classList.add("hidden");
+      renderCart();
+    }
+
+    /**
+     * Simula la confirmación de pedido dentro de la interfaz.
+     */
+    function checkoutOrder() {
+      const banner = document.getElementById("cart-status-banner");
+      if (!banner) return;
+
+      if (cart.length === 0) {
+        banner.textContent = "Tu pedido está vacío. Agrega algún platillo o bebida del menú primero.";
+        banner.className = "p-3 rounded-xl text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-200";
+        banner.classList.remove("hidden");
+        return;
+      }
+
+      const total = cart.reduce((sum, entry) => sum + entry.item.price * entry.qty, 0);
+      banner.textContent = `¡Pedido simulado registrado por L. ${total.toFixed(2)}! Gracias por elegir Cafetini La Ceiba.`;
+      banner.className = "p-3 rounded-xl text-xs font-semibold bg-emerald-100 text-emerald-900 border border-emerald-200";
+      banner.classList.remove("hidden");
+    }
+
+    /**
+     * Dibuja los artículos del carrito, contador superior y total en Lempiras.
+     */
+    function renderCart() {
+      const container = document.getElementById("cart-items-container");
+      const badge = document.getElementById("cart-count-badge");
+      const totalEl = document.getElementById("cart-total-price");
+
+      const totalCount = cart.reduce((sum, entry) => sum + entry.qty, 0);
+      const totalPrice = cart.reduce((sum, entry) => sum + entry.item.price * entry.qty, 0);
+
+      if (badge) badge.textContent = String(totalCount);
+      if (totalEl) totalEl.textContent = `L. ${totalPrice.toFixed(2)}`;
+
+      if (!container) return;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-cafe-500">
+            <p class="text-3xl mb-2">🍽️</p>
+            <p class="text-sm font-bold text-cafe-800">Aún no has agregado platillos</p>
+            <p class="text-xs mt-1">Selecciona "+ Agregar" en cualquier opción del menú.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = cart.map(({ item, qty }) => `
+        <div class="flex items-center justify-between gap-3 p-3.5 rounded-2xl border border-cafe-200 bg-cafe-50/60">
+          <div class="min-w-0">
+            <p class="text-sm font-bold text-cafe-900 truncate">${item.emoji} ${item.name}</p>
+            <p class="text-xs text-cafe-600 mt-0.5">L. ${(item.price * qty).toFixed(2)} (${qty} × L. ${item.price.toFixed(2)})</p>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button onclick="updateCartQty(${item.id}, -1)" aria-label="Restar cantidad" class="w-7 h-7 rounded-lg bg-white border border-cafe-300 font-bold text-cafe-800 hover:bg-cafe-100">-</button>
+            <span class="w-6 text-center text-xs font-extrabold text-cafe-900">${qty}</span>
+            <button onclick="updateCartQty(${item.id}, 1)" aria-label="Sumar cantidad" class="w-7 h-7 rounded-lg bg-white border border-cafe-300 font-bold text-cafe-800 hover:bg-cafe-100">+</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    /**
+     * Procesa el envío del formulario de contacto sin recargar la página.
+     */
+    function handleContactSubmit(event) {
+      event.preventDefault();
+      const nameInput = document.getElementById("contact-name");
+      const topicSelect = document.getElementById("contact-topic");
+      const confirmation = document.getElementById("contact-confirmation");
+
+      const nombre = nameInput ? nameInput.value.trim() : " visitante";
+      const motivo = topicSelect ? topicSelect.value : "consulta";
+
+      if (confirmation) {
+        confirmation.innerHTML = `Gracias, <strong>${escapeHtml(nombre)}</strong>. Hemos recibido tu mensaje sobre <strong>${escapeHtml(motivo)}</strong> para <strong>Cafetini La Ceiba</strong>.`;
+        confirmation.classList.remove("hidden");
+      }
+
+      event.target.reset();
+    }
+
+    /**
+     * Escapa caracteres especiales para mostrar texto de usuario de forma segura.
+     */
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // Inicialización al cargar el documento
+    document.addEventListener("DOMContentLoaded", () => {
+      const yearEl = document.getElementById("current-year");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      updateActiveNavStyles();
+      renderCategoryFilters();
+      renderMenu();
+      renderCart();
+    });
+  </script>
+</body>
 </html>
